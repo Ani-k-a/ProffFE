@@ -1,0 +1,62 @@
+body {
+    background: gray;
+}
+
+.grid-container {
+    min-height: 100vh;
+    background: white;
+
+    justify-items: stretch;
+    align-items: stretch;
+
+    justify-content: space-between;
+    align-content: space-around;
+
+    display: grid;
+    grid-template-columns: 100px 1fr 2fr 1fr 20vw;
+
+/* grid-template-columns: repeat(auto-feel, 100px);
+grid-template-columns: repeat(auto-fit, minmax (100px, 1fr)); */
+
+    grid-template-rows: 20vh 4fr 1fr 300px;
+    grid-template-areas: 
+    "nav header header header aside"
+    "nav main main main aside"
+    "nav main main main aside"
+    "footer footer footer footer aside";
+}
+.grid-container > header {
+    justify-self: left;
+    align-self: center;
+   grid-area: header;
+    background-color: greenyellow;
+}
+.grid-container > nav {
+    grid-area: nav;
+    background: rgb(86, 101, 63);
+}
+
+.grid-container > main {
+    grid-area: main;
+    background: yellow;
+}
+
+.grid-container > aside {
+    grid-area: aside;
+    background-color: steelblue;
+}
+
+.grid-container > footer {
+    grid-area: footer;
+    background: black;
+    color: white;
+}
+
+
+/* gap
+subgrid
+grid-auto-columns
+grid-auto-rows
+grid-auto-flow */
+
+

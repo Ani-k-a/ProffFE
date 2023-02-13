@@ -1,0 +1,57 @@
+body {
+    background: gray;
+}
+
+.grid-container {
+    min-height: 100vh;
+    background: white;
+    
+    display: grid;
+    grid-template-columns: [col1-start] 50px [col1-end col2] 50px [col2-end col3] 50px [col4] 50px [col5];
+    grid-template-rows: [row1] 50px [row2] 50px [row3] 50px [row4] 50px [row5];
+
+}
+
+.grid-container > header {
+    grid-column: col1-start / col2-end;
+    grid-row: row1/row2;
+    background: greenyellow;
+}
+.grid-container > nav {
+    grid-column: col3 / col4;
+    grid-row: row1/row2;
+    background: rgb(86, 101, 63);
+}
+
+.grid-container > main {
+    grid-column: col1-start / col3;
+    grid-row: row2 / row3;
+    background: yellow;
+}
+
+.grid-container > .aside-1 {
+    grid-column: col3 / col4;
+    grid-row: row2 / row3;
+    background-color: steelblue;
+}
+
+.grid-container > .aside-2 {
+    grid-column: col4 / col5;
+    grid-row: row1/row5;
+    background: rgb(52, 92, 123);
+}
+
+.grid-container > .footer-1 {
+    grid-column: col1-start / col4;
+    grid-row: row3 / row4;
+    background: black;
+    color: white;
+}
+.grid-container > .footer-2 {
+    grid-column: col1-start / col5;
+    grid-row: row4 / row5;
+    
+    background: rgb(32, 27, 27);
+    color: white;
+}
+
