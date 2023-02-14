@@ -1,0 +1,75 @@
+body {
+    background: gray;
+}
+
+.grid-container {
+    min-height: 100vh;
+    width: 100vw;
+    background: white;
+    
+    display: grid;
+    
+    /* grid-template:
+        'nav header header header header'
+        'nav main   main   .      aside'
+        'nav main   main   .      aside'
+        'nav main   main   .      .'
+        'nav footer footer footer footer'; */
+    /* grid-template-rows: 10vh 1fr 1fr 1fr 150px;
+    grid-template-columns: 10vh 50px 50px 50px 10vh; */
+    /* row-gap: 50px;
+    column-gap: 25px; */
+    /* gap: 50px 25px; */
+
+    /* Пытается разместит ячейки относительно друг друга
+    align-items: ;
+    justify-items: ; */
+
+    /* Размещение грида относительно родительского элемента
+    align-content: ;
+    justify-content: ; */
+
+    /* grid-auto-flow: ; */
+
+
+    grid-auto-rows: 300px;
+    grid-auto-columns: 200px;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+
+}
+
+   /* Используются внутри конкретных элементов */
+    /* align-self: ; размещение относительно вертикальной оси
+    justify-self: ; размещение относительно горизонтальной оси */
+
+.grid-container > header {
+    background: greenyellow;
+    /* grid-area: header; */
+}
+
+.grid-container > main {
+    background: yellow;
+    /* grid-area: main; */
+}
+
+.grid-container > aside {
+    background: blue;
+    /* grid-area: aside; */
+}
+
+.grid-container > footer {
+    background: black;
+    /* grid-area: footer; */
+}
+
+.grid-container > nav {
+    background: red;
+    /* grid-area: nav; */
+}
+
+.grid-container > .out-of-the-box {
+    background-color: blueviolet;
+    /* grid-row: 10/11;
+    grid-column: 10/11; */
+}
