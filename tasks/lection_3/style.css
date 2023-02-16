@@ -52,3 +52,11 @@
         padding: 10px;
     } 
 }
+
+
+
+/* @media (resolution: 2dppx) and (max-width: 1400px) {
+.selector {
+  background-image: url();
+}
+} */

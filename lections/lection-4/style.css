@@ -1,0 +1,35 @@
+body {
+padding: 50px;
+}
+li {
+    list-style: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+}
+.item {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: justify;
+  
+}
+
+i {
+    vertical-align: middle;
+    float: left;
+    font-size: 40px;
+    margin-right: 10px;
+}
+
+/* .accent:hover  {
+    text-shadow: gray 1px 0 10px;
+    
+} */
+
+p:hover > i {
+    text-shadow: rgb(107, 236, 243) 2px 0 20px;
+    color: bisque;
+}
