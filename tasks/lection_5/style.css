@@ -1,0 +1,114 @@
+/* .target {
+width: 300px;
+height: 300px;
+border: 2px solid black;
+transition: background-color 0.5s;
+}
+.target:hover {
+    background-color: aquamarine;
+}
+
+
+.main {
+    margin-top: 50px;
+    width: 300px;
+height: 300px;
+border: 2px solid black;
+transition: border-radius 0.5s;
+}
+.main:hover {
+    border-radius: 50%;
+} */
+
+.main {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+}
+.inner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  top: 0;
+  left: 0;
+  transition: top left;
+  transition-duration: 0.5s;
+}
+.main:hover .inner {
+  top: 50%;
+  left: 50%;
+}
+/* создать блок с тектом */
+/* по умолчанию текст прозрачный opacity  */
+/* при наведении на блок текст проявляется  */
+/* изменение стиля opacity должно быть анимировано */
+
+.text-box {
+  position: relative;
+  margin-top: 50px;
+  display: block;
+  width: 300px;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.text-1 {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.text-2 {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.5s;
+}
+.text-box:hover .text-1 {
+  opacity: 0;
+}
+.text-box:hover .text-2 {
+  opacity: 1;
+}
+
+.product {
+    margin-top: 100px;
+    position: relative;
+  width: 250px;
+  height: 250px;
+  border: 2px solid black;
+}
+.product[data-sale]::before {
+    content: attr(data-sale);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: tomato;
+    color: white;
+}
+/* .sale::after {
+    content: attr(data-sale);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: tomato;
+    color: white;
+} */
