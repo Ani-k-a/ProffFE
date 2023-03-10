@@ -37,8 +37,7 @@ const createToDoEl = (toDoEntity) => {
    
     newToDoContainer.append(newToDoValue, paragraf, newToDoDeadline, button);
 
-    const handeButtonDelClick = (event) => {
-        event.preventDefault();
+    const handeButtonDelClick = () => {
         newToDoContainer.remove();
         const index = arr.indexOf(toDoEntity);
         index !== -1 && arr.splice(index, 1);
@@ -59,7 +58,7 @@ const createToDoEl = (toDoEntity) => {
 // add new task
 
 function handleTaskAdd() {
-    if (newToDoInput.value) {
+    if (newToDoInput.value&&newToDoDeadline.value) {
         const toDoEntity = createToDoEntity(newToDoInput.value, newToDoDeadline.value);
         arr.push(toDoEntity);
         list.append(createToDoEl(toDoEntity));
@@ -112,13 +111,14 @@ sortDecreaseBtn.addEventListener('click', () => {
 
 buttonDellSelected.addEventListener('click', ()=>{
 
+    const sortArr = arr.filter(({isCompleted}) => !isCompleted);
+    arr.splice(0, arr.length)
+    sortArr.forEach(el => arr.push(el));
+    list.replaceChildren();
+    list.append(...arr.map(createToDoEl));
    
+    localStorage.setItem('toDo', JSON.stringify(arr));
 })
-
-
-
-
-
 
 
 
