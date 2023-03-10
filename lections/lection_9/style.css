@@ -1,0 +1,67 @@
+.container{
+    background-color:rgb(221, 221, 214);
+    width: 800px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 10px 30px;
+    width: 60%;
+}
+
+input[type='button'], .button-delAll {
+    background-color: rgb(42, 60, 152);
+    border: none;
+    color: white;
+    padding: 10px 30px;
+}
+.del-selected {
+    margin-top: 60px;
+}
+
+.del-selected-btn {
+    padding: 10px 30px;
+}
+p { 
+    width: 60%;
+}
+.sort {
+    margin-top: 50px;
+    padding-right: 180px;
+    text-align: end;
+}
+
+.sort-decr-btn, .sort-incr-btn{
+    margin-left: 10px;
+}
+
+.button-delAll{
+    margin-top: 40px;
+}
+
+.del-item {
+    width: 30px;
+    height: 30px;
+}
+
+.form-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+form[id='list'] {
+    margin-top: 30px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+
+.list-item:not(:last-child) {
+    margin-bottom: 15px;
+}

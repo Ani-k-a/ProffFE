@@ -24,20 +24,40 @@
 
 
 // сформировать массив из значений value
-const numbers = [
-    {id: 1, value: 52},
-    {id: 2, value: 42},
-    {id: 3, value: 32},
-    {id: 4, value: 22},
-    {id: 5, value: 12},
-];
+// const numbers = [
+//     {id: 1, value: 52},
+//     {id: 2, value: 42},
+//     {id: 3, value: 32},
+//     {id: 4, value: 22},
+//     {id: 5, value: 12},
+// ];
 
-console.log(numbers.map(({value}) => value));
-
-
+// console.log(numbers.map(({value}) => value));
 
 
 
 
 
+function sumDigPow(a, b) {
+    let arr = [];
+    for (let i = a; i <= b; i++) {
+        if (i < 10) {
+            arr.push(i);
+        } else { 
+            let acc = i.toString().split('').reduce((acc, el, ind) => {acc + Number(el) ** (ind+1);
+            return acc})
 
+            if(acc === i) {
+                arr.push(i)
+            }
+        }       
+
+    }
+    return arr;
+}
+
+
+// console.log(validatePIN("12345"));
+// console.log(validatePIN("1234"));
+console.log(sumDigPow(1, 100));
+// console.log(accum("EvidjUnokmM"))

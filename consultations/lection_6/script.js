@@ -59,10 +59,3 @@
 // в двоичном формате
 
 
-function convertToBitwise(number){
-    return number.toString(2);
-}
-
-console.log(convertToBitwise(10));
-console.log(convertToBitwise(16));
-console.log(convertToBitwise(24));
