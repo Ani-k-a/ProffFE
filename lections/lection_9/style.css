@@ -65,3 +65,9 @@ form[id='list'] {
 .list-item:not(:last-child) {
     margin-bottom: 15px;
 }
+
+.active{
+    background-color:  rgb(42, 60, 152);
+    color: white;
+    border-color: rgb(42, 60, 152);
+}

@@ -34,7 +34,7 @@ const createToDoEl = (toDoEntity) => {
     paragraf.innerText = toDoEntity.text;
     newToDoDeadline.innerText = toDoEntity.deadline;
     button.setAttribute('class', 'del-item fa-solid fa-xmark');
-   
+
     newToDoContainer.append(newToDoValue, paragraf, newToDoDeadline, button);
 
     const handeButtonDelClick = () => {
@@ -58,13 +58,14 @@ const createToDoEl = (toDoEntity) => {
 // add new task
 
 function handleTaskAdd() {
-    if (newToDoInput.value&&newToDoDeadline.value) {
+    if (newToDoInput.value && newToDoDeadline.value) {
         const toDoEntity = createToDoEntity(newToDoInput.value, newToDoDeadline.value);
         arr.push(toDoEntity);
         list.append(createToDoEl(toDoEntity));
         localStorage.setItem('toDo', JSON.stringify(arr));
         newToDoInput.value = '';
     }
+    else alert('Please, complete all fields')
 }
 
 button.addEventListener('click', handleTaskAdd)
@@ -94,29 +95,62 @@ btnDellAll.addEventListener('click', () => {
 //add increase and decrease sort
 
 sortIncreaseBtn.addEventListener('click', () => {
-    
-    arr.sort((a, b) => a.deadline.localeCompare(b.deadline));
-    list.replaceChildren();
-    list.append(...arr.map(createToDoEl));
+    if (!sortIncreaseBtn.classList.contains('active') && !sortDecreaseBtn.classList.contains('active')) {
+        sortIncreaseBtn.classList.add('active');
+        sortDecreaseBtn.disablet = true;
+
+        const sortArr = arr.map(el=> el).sort((a, b) => a.deadline.localeCompare(b.deadline));
+        list.replaceChildren();
+        list.append(...sortArr.map(createToDoEl));
+
+        console.log(arr);
+    }
+
+    else if(!sortIncreaseBtn.disablet){
+        sortIncreaseBtn.classList.remove('active');
+        sortDecreaseBtn.disablet = false;
+        list.replaceChildren();
+        list.append(...arr.map(createToDoEl));
+        console.log(arr);
+
+    }
+
 })
 
 sortDecreaseBtn.addEventListener('click', () => {
-    arr.sort((a, b) => b.deadline.localeCompare(a.deadline));
-    list.replaceChildren();
-    list.append(...arr.map(createToDoEl));
+    if (!sortIncreaseBtn.classList.contains('active') && !sortDecreaseBtn.classList.contains('active')) {
+        sortDecreaseBtn.classList.add('active');
+        sortIncreaseBtn.disablet = true;
+
+        const sortArr = arr.map(el=> el).sort((a, b) => b.deadline.localeCompare(a.deadline));
+        list.replaceChildren();
+        list.append(...sortArr.map(createToDoEl));
+
+        console.log(arr);
+    }
+
+    else if (!sortDecreaseBtn.disablet){
+        sortDecreaseBtn.classList.remove('active');
+        sortIncreaseBtn.disablet = false;
+        list.replaceChildren();
+        list.append(...arr.map(createToDoEl));
+        console.log(arr);
+
+    }
+
 
 })
 
 // button delate selected items
 
-buttonDellSelected.addEventListener('click', ()=>{
+buttonDellSelected.addEventListener('click', () => {
 
-    const sortArr = arr.filter(({isCompleted}) => !isCompleted);
+    const sortArr = arr.filter(({ isCompleted }) => !isCompleted);
     arr.splice(0, arr.length)
     sortArr.forEach(el => arr.push(el));
     list.replaceChildren();
     list.append(...arr.map(createToDoEl));
-   
+
     localStorage.setItem('toDo', JSON.stringify(arr));
 })
 
