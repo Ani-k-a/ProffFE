@@ -15,11 +15,56 @@ const buttonHideDoneTasks = document.querySelector('.del-selected-btn');
 
 datePickerId.min = new Date().toISOString().split("T")[0]; // add min current time in deadline timer
 
-// console.log(newToDoDeadline)
-
 const arr = localStorage.getItem('toDo') ? JSON.parse(localStorage.getItem('toDo')) : [];
 
+//save value of inputs
+const form = document.querySelector('.form-add');
 
+const date = {
+    task: '',
+    date: ''
+}
+
+date.task = localStorage.getItem('dateForm') ? JSON.parse(localStorage.getItem('dateForm')).task : '';
+date.date = localStorage.getItem('dateForm') ? JSON.parse(localStorage.getItem('dateForm')).date : '';
+
+form.addEventListener('input', () => {
+    date.task = newToDoInput.value;
+    date.date = newToDoDeadline.value;
+    localStorage.setItem('dateForm', JSON.stringify(date));
+}); //  needs lodash and throttle
+
+newToDoInput.value = date.task;
+newToDoDeadline.value = date.date;
+
+//save sort btn
+  const sortButtons = {
+    increaseBtn: '',
+    decreaseBtn: ''
+  }
+
+sortButtons.increaseBtn = localStorage.getItem('sortButtons') ? JSON.parse(localStorage.getItem('sortButtons')).increaseBtn : '';
+sortButtons.decreaseBtn = localStorage.getItem('sortButtons') ? JSON.parse(localStorage.getItem('sortButtons')).decreaseBtn : '';
+
+  if (localStorage.getItem('sortButtons') !== null) {
+    sortIncreaseBtn.classList.remove();
+    sortDecreaseBtn.classList.remove();
+
+    if (sortButtons.increaseBtn !== ''){
+    sortIncreaseBtn.classList.add(sortButtons.increaseBtn);}
+
+    if(sortButtons.decreaseBtn !== ''){sortDecreaseBtn.classList.add(sortButtons.decreaseBtn)}
+}
+
+//  //save filter btn
+
+if (localStorage.getItem('filterButton') !== null) {
+    const newArr = JSON.parse(localStorage.getItem('filterButton'));
+    buttonHideDoneTasks.classList.remove();
+    buttonHideDoneTasks.classList.add(...Object.values(newArr))
+}
+
+//create element
 const createToDoEl = (toDoEntity) => {
 
     const newToDoContainer = document.createElement('label');
@@ -63,6 +108,7 @@ function handleTaskAdd() {
         arr.push(toDoEntity);
         list.append(createToDoEl(toDoEntity));
         localStorage.setItem('toDo', JSON.stringify(arr));
+        localStorage.removeItem('dateForm');
         newToDoInput.value = '';
         newToDoDeadline.value = '';
 
@@ -71,7 +117,6 @@ function handleTaskAdd() {
 }
 
 button.addEventListener('click', handleTaskAdd)
-
 
 list.append(...arr.map(createToDoEl))
 
@@ -100,12 +145,14 @@ sortIncreaseBtn.addEventListener('click', () => {
     if (!sortIncreaseBtn.classList.contains('active') && !sortDecreaseBtn.classList.contains('active')) {
         sortIncreaseBtn.classList.add('active');
         sortDecreaseBtn.disablet = true;
-
         const sortArr = arr.map(el => el).sort((a, b) => a.deadline.localeCompare(b.deadline));
         list.replaceChildren();
         list.append(...sortArr.map(createToDoEl));
+        
 
-        console.log(arr);
+        sortButtons.increaseBtn = 'active';
+        sortButtons.decreaseBtn = '';
+        localStorage.setItem('sortButtons', JSON.stringify(sortButtons));
     }
 
     else if (!sortIncreaseBtn.disablet) {
@@ -115,8 +162,10 @@ sortIncreaseBtn.addEventListener('click', () => {
         list.append(...arr.map(createToDoEl));
         console.log(arr);
 
+        sortButtons.increaseBtn = '';
+        sortButtons.decreaseBtn = '';
+        localStorage.setItem('sortButtons', JSON.stringify(sortButtons));
     }
-
 })
 
 sortDecreaseBtn.addEventListener('click', () => {
@@ -128,7 +177,9 @@ sortDecreaseBtn.addEventListener('click', () => {
         list.replaceChildren();
         list.append(...sortArr.map(createToDoEl));
 
-        console.log(arr);
+        sortButtons.increaseBtn = '';
+        sortButtons.decreaseBtn = 'active';
+        localStorage.setItem('sortButtons', JSON.stringify(sortButtons));
     }
 
     else if (!sortDecreaseBtn.disablet) {
@@ -136,14 +187,14 @@ sortDecreaseBtn.addEventListener('click', () => {
         sortIncreaseBtn.disablet = false;
         list.replaceChildren();
         list.append(...arr.map(createToDoEl));
-        console.log(arr);
-
+        
+        sortButtons.increaseBtn = '';
+        sortButtons.decreaseBtn = '';
+        localStorage.setItem('sortButtons', JSON.stringify(sortButtons));
     }
-
-
 })
 
-// button delate selected items
+// button hide selected items
 
 buttonHideDoneTasks.addEventListener('click', () => {
     if (!buttonHideDoneTasks.classList.contains('active')) {
@@ -151,31 +202,31 @@ buttonHideDoneTasks.addEventListener('click', () => {
         buttonHideDoneTasks.classList.add('active');
         buttonHideDoneTasks.innerHTML = "Show all tasks";
         const sortArr = arr.filter(({ isCompleted }) => !isCompleted);
-        
+
         arr.splice(0, arr.length)
         sortArr.forEach(el => arr.push(el));
         list.replaceChildren();
         list.append(...arr.map(createToDoEl));
 
- 
+        localStorage.setItem('filterButton', JSON.stringify(buttonHideDoneTasks.classList));
+
+
     }
     else {
         buttonHideDoneTasks.classList.remove('active');
         buttonHideDoneTasks.innerHTML = "Hide done tasks";
 
         arr.splice(0, arr.length)
-        const fullArr = localStorage.getItem('toDo') ? JSON.parse(localStorage.getItem('toDo')) : [];
-        fullArr.forEach(el=> arr.push(el));
+        const fullArr = JSON.parse(localStorage.getItem('toDo'));
+        fullArr.forEach(el => arr.push(el));
         list.replaceChildren();
         list.append(...arr.map(createToDoEl));
+
+        localStorage.setItem('filterButton', JSON.stringify(buttonHideDoneTasks.classList));
 
     }
 
 })
- //save value of inputs
-
-
-
 
 
 

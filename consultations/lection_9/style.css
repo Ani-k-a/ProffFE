@@ -1,0 +1,25 @@
+.section {
+    width: 800px;
+    margin: 30px auto;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+   
+}
+.form-title, .form-price {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+button {
+    padding: 10px 20px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: 0px;
+       
+}
+button:hover {
+   
+    background-color: rgb(124, 196, 196);
+}
